@@ -1,5 +1,6 @@
 *.iml
 .gradle
+.fleat
 **/build/
 xcuserdata
 !src/**/build/
