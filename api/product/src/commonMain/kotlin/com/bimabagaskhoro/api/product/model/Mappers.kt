@@ -1,13 +1,15 @@
 package com.bimabagaskhoro.api.product.model
 
 object Mappers {
-    fun mapToUi(response: ProductListResponse?): List<ProductList> {
-        return response?.data?.map {
-            mapItemToUi(it)
-        }.orEmpty()
+    fun mapToUi(response: BaseModelListResponse<ProductListResponse>?): List<ProductList> {
+        return response
+            ?.data
+            ?.map {
+                mapItemToUi(it)
+            }.orEmpty()
     }
 
-    private fun mapItemToUi(response: ProductListResponse.DataItem?): ProductList {
+    private fun mapItemToUi(response: ProductListResponse?): ProductList {
         return ProductList(
             id = response?.id ?: 0,
             name = response?.name.orEmpty(),
