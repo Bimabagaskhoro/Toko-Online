@@ -1,5 +1,4 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -15,7 +14,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -26,12 +25,14 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+        }
+        iosMain.dependencies {
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -40,6 +41,10 @@ kotlin {
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+
+            implementation(projects.libraries.core)
+            implementation(projects.api.product)
+            implementation(projects.feature.home)
         }
     }
 }
